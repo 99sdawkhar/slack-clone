@@ -5,10 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './themes/global-styles';
 
+import { StateProvider } from './StateProvider/StateProvider'; 
+import reducer, { initialState } from './StateProvider/reducer';
+
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
-    <App />
+    <StateProvider initialState={initialState} reducer={reducer}>
+			<App />
+		</StateProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

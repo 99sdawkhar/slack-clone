@@ -2,18 +2,35 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import IconContainer from './sideBarIcon.styled';
-
-const SideBarIcon = ({ className, icon, color, onClick, title, hoverText, size = "sm"}) => {
+import { useNavigate } from 'react-router';
+const SideBarIcon = ({ id, className, icon, color, onClick, title, hoverText, size = "sm"}) => {
+  
+  const navigate = useNavigate();
+  const selectChannel = () => {
+    navigate(`/rooms/${id}`);
+  }
+  
   return (
-    <IconContainer className={className}>
-      <FontAwesomeIcon
-        icon={icon}
-        color={color}
-        onClick={onClick}
-        title={hoverText ? hoverText : title}
-        size={size}
-      />
-      {icon ? <h3>{title}</h3>: <h3><span>#</span>{title}</h3>}
+    <IconContainer
+      className={className}
+      onClick={onClick ? onClick : selectChannel}  
+    >
+      {icon ? 
+        <>
+          <FontAwesomeIcon
+            icon={icon}
+            color={color}
+            title={hoverText ? hoverText : title}
+            size={size}
+          />
+          <h3>{title}</h3>
+        </>: (
+        <>
+          <span>#</span>
+          <h3>{title}</h3>
+        </>
+        )
+      }
     </IconContainer>
   )
 }

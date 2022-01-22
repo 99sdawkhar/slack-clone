@@ -6,10 +6,23 @@ const HeaderStyle = styled.header`
   justify-content: flex-start;
   
   @media screen and (min-width: 768px) {
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 
-  .wrapper {
+  .header-left {
+    max-width: 230px;
+    width: 20%;
+    height: auto;
+    display: flex;
+    align-items: center;
+
+    figure {
+      max-width: 30px;
+      margin: 0 auto;
+    }
+  }
+
+  .header-right {
     display: none;
     @media screen and (min-width: 768px) {
       width: 80%;

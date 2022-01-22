@@ -43,7 +43,7 @@ const SideBarContainer = styled.div`
     }
 
     .top-section {
-        
+        border-bottom: 1px solid ${(props) => props.theme.colors.BORDER};
     }
 `
 export default SideBarContainer
