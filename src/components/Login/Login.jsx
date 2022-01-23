@@ -8,6 +8,8 @@ import { actionTypes } from '../../StateProvider/reducer';
 
 import LoginContainer from './login.styled';
 
+import slackLogo from '../../assets/images/logo.png';
+
 const Login = () => {
   const [{ user }, dispatch] = useStateValue(null);
 
@@ -27,7 +29,7 @@ const Login = () => {
   return (
     <LoginContainer>
       <figure>
-        <img src="https://a.slack-edge.com/80588/marketing/img/icons/icon_slack_hash_colored.png" alt="Slack Clone Login Page" />
+        <img src={slackLogo} alt="Slack Clone Login Page" />
       </figure>
       <h2>Sign to use slack</h2>
       <button onClick={signIn}>Sign In with Google</button>

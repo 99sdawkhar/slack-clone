@@ -6,6 +6,8 @@ import db from '../../firebase';
 import InputComponent from './chat-input.styled';
 import { useStateValue } from '../../StateProvider/StateProvider';
 
+import userProfile from '../../assets/images/user-profile.jpg';
+
 const ChatInput = ({ channelName, roomId}) => {
   const [input, setInput] = useState('');
 
@@ -21,7 +23,7 @@ const ChatInput = ({ channelName, roomId}) => {
           await addDoc(roomsCollectionRef, {
             message: input,
             username: user?.displayName,
-            userImage: user? user.photoURL : 'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-21.jpg',
+            userImage: user? user.photoURL : userProfile,
             timestamp: serverTimestamp(),
           });
         }
