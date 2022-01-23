@@ -7,6 +7,7 @@ const LoginContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: auto;
+  height: 100vh;
 
   figure {
     align-self: center;
