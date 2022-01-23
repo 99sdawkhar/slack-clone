@@ -2,11 +2,13 @@ import React from 'react';
 
 import MessageContainer from './message.styled';
 
+import userProfile from '../../assets/images/user-profile.jpg';
+
 const Message = ({ userImage, user, message, timestamp }) => {
   return (
     <MessageContainer>
       <figure>
-          <img src={userImage ? userImage : 'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-21.jpg'} />
+        <img src={userImage ? userImage : userProfile} alt="user profile" />
       </figure>
       <div className="content">
         <div className="user-data">

@@ -6,6 +6,8 @@ import { useStateValue } from '../../StateProvider/StateProvider';
 
 import HeaderStyle from './header.styled';
 
+import userProfile from '../../assets/images//user-profile.jpg';
+
 const Header = ({ openChat }) => {
   const [{ user }] = useStateValue();
 
@@ -13,7 +15,7 @@ const Header = ({ openChat }) => {
     <HeaderStyle>
       {!openChat && <div className="header-left">
         <figure>
-          <img src={user? user.photoURL : 'https://icon-library.com/images/no-user-image-icon/no-user-image-icon-21.jpg'} alt={user?.displayName} />
+          <img src={user? user.photoURL : userProfile} alt={user?.displayName} />
         </figure>
       </div>
       }
