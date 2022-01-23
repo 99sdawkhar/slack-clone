@@ -1,85 +1,96 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle, faStar  } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInfoCircle,
+  faStar,
+  faChevronLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
-import ChatContainer from './chat.styled';
+import {
+  collection,
+  doc,
+  onSnapshot,
+  query,
+  orderBy,
+} from "firebase/firestore";
 
-import db from '../../firebase.js';
-import { collection, getDocs, updateDoc, doc } from 'firebase/firestore/lite';
-import Message from '../Message/Message';
-import MessageContainer from '../Message/message.styled';
-import ChatInput from '../ChatInput/ChatInput';
+import db from "../../firebase.js";
 
-const Chat = () => {
+import ChatInput from "../ChatInput/ChatInput";
+import Message from "../Message/Message";
+
+import ChatContainer from "./chat.styled";
+import useWindowDimensions from "../../hooks/useWindowDimensions.js";
+
+const Chat = ({ setOpenChat, openChat }) => {
   const { roomId } = useParams();
+  const { width } = useWindowDimensions();
 
   const [roomDetails, setRoomDetails] = useState(null);
   const [roomMessages, setRoomMessages] = useState([]);
 
-  useEffect(() => {
-    const getRoomsDetails = async (id) => {
-      const roomDocRef = doc(db, 'rooms', id);
-      const data = await getDocs(roomDocRef)
-        .then((d) => {
-          setRoomDetails(d.data());
-        })
-    }
-    getRoomsDetails(roomId);
+  const AlwaysScrollToBottom = () => {
+    const elementRef = useRef();
+    useEffect(() => elementRef.current.scrollIntoView());
+    return <div ref={elementRef} />;
+  };
 
-    // TODO: display messages in asc order from db
-    // setRoomMessages()
-  }, [roomId])
+  useEffect(() => {
+    if (roomId) {
+      onSnapshot(doc(db, "rooms", roomId), (document) => {
+        setRoomDetails(document.data());
+      });
+
+      const msgColl = query(
+        collection(db, "rooms", roomId, "messages"),
+        orderBy("timestamp")
+      );
+      onSnapshot(msgColl, (querySnapshot) => {
+        setRoomMessages(
+          querySnapshot.docs.map((msg) => ({ ...msg.data(), id: msg.id }))
+        );
+      });
+    }
+  }, [roomId]);
 
   return (
     <ChatContainer>
       <div className="header">
+        {width < 541 && openChat && (
+          <button className="back-arrow" onClick={() => setOpenChat(!openChat)}>
+            <FontAwesomeIcon icon={faChevronLeft} title="Star" size="2x" />
+          </button>
+        )}
         <div className="header-left">
-          <h3># general{roomDetails?.name}</h3>
-          <FontAwesomeIcon
-            icon={faStar}
-            title='Star'
-            size='1x'
-          />
+          <h3># {roomDetails?.name}</h3>
+          <FontAwesomeIcon icon={faStar} title="Star" size="xs" />
         </div>
         <div className="header-right">
           <FontAwesomeIcon
             icon={faInfoCircle}
-            // color={color}
-            // onClick={onClick}
-            title='Detail'
-            size='1x'
+            title="This is detail section"
+            size="1x"
           />
           <span>Details</span>
         </div>
       </div>
       <div className="chat-body">
         <ul className="chat-data">
-        {/* {roomMessages?.map((messageBody) => {
-          <Message
-            userImage ={messageBody.userImage}
-            user={messageBody.user}
-            message={messageBody.message}
-            timestamp={messageBody.timestamp}
-          />
-        })} */}
-          <MessageContainer>
-            <figure>
-                <img src="https://icon-library.com/images/no-user-image-icon/no-user-image-icon-21.jpg" alt="User Dp" />
-            </figure>
-            <div className="content">
-              <div className="user-data">
-                <h4>Shubham D</h4>
-                <span>12:20</span>
-              </div>
-              <p>Hello Bro Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut, recusandae voluptas. Voluptatibus dicta obcaecati earum, molestiae at adipisci error sit excepturi voluptatem esse, ipsum alias, iste omnis soluta sint aperiam neque ipsa possimus amet ipsam! Placeat possimus, ex quisquam aperiam alias officia dolor omnis ad? Quas esse, blanditiis culpa pariatur fuga voluptate veniam debitis nisi, id soluta, consectetur nemo necessitatibus assumenda labore at? Maxime eveniet consequatur aliquid, totam exercitationem esse facilis deleniti illum, voluptates similique iusto libero. Fuga laudantium magnam facilis nemo a magni esse veniam, dolor id neque dolorem obcaecati recusandae, molestiae expedita officiis praesentium numquam? Libero, error doloremque.</p>
-            </div>
-          </MessageContainer>
+          {roomMessages?.map(
+            ({ userImage, username, message, timestamp, id }) => (
+              <Message
+                key={id}
+                userImage={userImage}
+                user={username}
+                message={message}
+                timestamp={timestamp}
+              />
+            )
+          )}
+          <AlwaysScrollToBottom />
         </ul>
-        <ChatInput
-          channelName={roomDetails?.name}
-          channelId={roomId}
-        />
+        <ChatInput channelName={roomDetails?.name} roomId={roomId} />
       </div>
     </ChatContainer>
   );

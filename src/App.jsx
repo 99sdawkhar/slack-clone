@@ -1,5 +1,5 @@
 import { ThemeProvider } from "styled-components";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import theme from "./themes/index";
 
@@ -8,11 +8,23 @@ import SideBar from "./components/SideBar/SideBar";
 import Chat from "./components/Chat/Chat";
 import Login from "./components/Login/Login";
 
-
 import { useStateValue } from "./StateProvider/StateProvider";
+import { useEffect, useState } from "react";
+import useWindowDimensions from "./hooks/useWindowDimensions";
 
 function App() {
   const [{ user }, dispatch] = useStateValue(null);
+
+  const [openChat, setOpenChat] = useState(null);
+  const { width } = useWindowDimensions();
+
+  useEffect(() => {
+    if (width < 541) {
+      setOpenChat(false);
+    } else {
+      setOpenChat(null);
+    }
+  }, [width])
 
   return (
     <ThemeProvider theme={theme}>
@@ -21,12 +33,30 @@ function App() {
           <Login />
         ) : (
           <>
-            <Header />
+            <Header openChat={openChat} />
             <div className="container">
-              <SideBar />
+              {!openChat && <SideBar setOpenChat={setOpenChat} openChat={openChat} />}
               <Routes>
-                <Route path="/rooms/:roomId" element={<Chat />} />
-                <Route path="/" element={<Chat />} />
+                {width < 541 ? (
+                  openChat && 
+                  <>
+                    <Route path="/rooms/:roomId" element={<Chat setOpenChat={setOpenChat} openChat={openChat} />} />
+                    <Route
+                      path="*"
+                      element={<Navigate replace to="/rooms/vGzFAuXakczYD2OU9UF0"/>}
+                    />
+                  </>
+                  ) : (
+                    <>
+                      <Route path="/rooms/:roomId" element={<Chat setOpenChat={setOpenChat} openChat={openChat} />} />
+                      <Route
+                        path="*"
+                        element={<Navigate replace to="/rooms/vGzFAuXakczYD2OU9UF0"/>}
+                      />
+                    </>
+                  )
+                }
+                
               </Routes>
             </div>
           </>

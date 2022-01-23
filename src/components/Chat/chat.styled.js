@@ -1,22 +1,38 @@
 import styled from "styled-components";
 
 const ChatContainer = styled.div`
-  display: none;
   width: 100%;
-  padding: 20px 0;
+  padding-bottom: 20px;
   background-color: ${(props) => props.theme.colors.CHAT_BG};
+  border-left: 1px solid ${(props) => props.theme.colors.BORDER};
   color: ${(props) => props.theme.colors.WHITE};
-  
-  @media screen and (min-width: 540px) {
-    display: block;
-  }
 
   .header {
-    padding: 0 20px 10px;
+    padding: 20px 20px 19px;
     display: flex;
     justify-content: space-between;
     font-size: 20px;
     font-weight: 600;
+    border-top: 1px solid ${(props) => props.theme.colors.BORDER};
+    border-bottom: 1px solid ${(props) => props.theme.colors.BORDER};
+    @media screen and (min-width: 992px) {
+      padding: 16px 20px 16px;
+    }
+    @media screen and (min-width: 768px) {
+      padding: 16px 20px 16px;
+    }
+
+    .back-arrow {
+      width: 20px;
+      padding-right: 1%;
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      svg {
+        color: ${(props) => props.theme.colors.WHITE};
+      }
+    }
     .header-left {
       cursor: pointer;
       display: flex;
@@ -28,6 +44,11 @@ const ChatContainer = styled.div`
 
     .header-right {
       cursor: pointer;
+      display: none;
+
+      @media screen and (min-width: 540px) {
+        display: block;
+      }
       svg {
         padding-right: 7px;
       }
@@ -41,17 +62,6 @@ const ChatContainer = styled.div`
     height: 85vh;
     .chat-data {
       overflow-y: scroll;
-      
-      /* width */
-      /* ::-webkit-scrollbar {
-        width: 7px;
-      } */
-
-      /* Handle */
-      /* ::-webkit-scrollbar-thumb {
-        background: #797c7e;
-        border-radius: 10px;
-      } */
     }
   }
 

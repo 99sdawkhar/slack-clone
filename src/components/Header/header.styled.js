@@ -4,8 +4,9 @@ const HeaderStyle = styled.header`
   background-color: ${(props) => props.theme.colors.HEADER_BG};
   display: flex;
   justify-content: flex-start;
+  max-height: 250px;
   
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 540px) {
     justify-content: space-between;
   }
 
@@ -13,8 +14,14 @@ const HeaderStyle = styled.header`
     max-width: 230px;
     width: 20%;
     height: auto;
+    margin: auto;
     display: flex;
     align-items: center;
+    padding: 10px 0;
+  
+      /* @media screen and (min-width: 540px) {
+        justify-content: space-between;
+      } */
 
     figure {
       max-width: 30px;
@@ -24,7 +31,7 @@ const HeaderStyle = styled.header`
 
   .header-right {
     display: none;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 540px) {
       width: 80%;
       display: flex;
       justify-content: flex-start;

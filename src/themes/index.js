@@ -12,11 +12,6 @@ const theme = {
     GOOGLE_AUTH: '#309f53',
     MESSAGE_HOVER: '#222529'
   },
-  fonts: {
-    BEBASNEUE_REGULAR: 'BebasNeue-Regular',
-  },
-  wrapper: '1360px',
-  wrapperWidth: '86%',
 };
 
 export default theme;

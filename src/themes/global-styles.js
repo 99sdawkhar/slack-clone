@@ -82,13 +82,18 @@ const GlobalStyle = createGlobalStyle`
 		}
 	}
 
-  @media screen and (min-width: 540px) {
-    body { overflow: hidden; }
+  #root {
+    background: #19171d;
+    overflow: hidden;
+    height: 100vh;
   }
 
   .container {
     display: flex;
+    height: 90%;
+    font-family: Codec-Pro-Regular, sans-sarif;
   }
+
   /* width */
   ::-webkit-scrollbar {
     width: 7px;

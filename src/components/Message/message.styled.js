@@ -13,7 +13,6 @@ const MessageContainer = styled.li`
     max-height: 35px;
     flex-basis: 15%;
     margin-right: 10px;
-    border: 1px solid #000;
     border-radius: 3px;
   }
   .content {
@@ -27,6 +26,7 @@ const MessageContainer = styled.li`
       h4 {
         padding-right: 10px;
         font-weight: 600;
+        font-family: Codec-Pro-Bold, sans-sarif;
       }
 
       span {

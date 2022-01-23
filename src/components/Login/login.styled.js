@@ -7,7 +7,6 @@ const LoginContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: auto;
-  height: 100vh;
 
   figure {
     align-self: center;
@@ -20,18 +19,19 @@ const LoginContainer = styled.div`
     font-size: 25px;
     font-weight: 600;
     margin-bottom: 20px;
-    color: ${(props) => props.theme.colors.HEADER_BG}
+    color: ${(props) => props.theme.colors.WHITE}
   }
   button {
     padding: 10px;
     cursor: pointer;
     background-color: ${(props) => props.theme.colors.GOOGLE_AUTH};
+    color: ${(props) => props.theme.colors.WHITE};
     border: none;
     outline: none;
     border-radius: 5px;
     @media screen and (min-width: 768px) {
       max-width: 400px;
-      width: 20%;  
+      width: 20%; 
     }
   }
 `

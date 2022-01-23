@@ -1,12 +1,19 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router-dom';
 
 import IconContainer from './sideBarIcon.styled';
-import { useNavigate } from 'react-router';
-const SideBarIcon = ({ id, className, icon, color, onClick, title, hoverText, size = "sm"}) => {
-  
+import useWindowDimensions from '../../hooks/useWindowDimensions';
+
+const SideBarIcon = ({ id, className, icon, color, onClick, title, hoverText, openChat, setOpenChat,size = "sm",}) => {
   const navigate = useNavigate();
+
+  const { width } = useWindowDimensions();
+
   const selectChannel = () => {
+    if (width < 541) {
+      setOpenChat(true);
+    }
     navigate(`/rooms/${id}`);
   }
   

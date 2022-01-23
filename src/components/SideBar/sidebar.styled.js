@@ -2,10 +2,10 @@ import styled from 'styled-components'
 
 const SideBarContainer = styled.div`
     width: 100%;
-    height: auto;
     background-color: ${(props) => props.theme.colors.SIDEBAR_BG};
+    overflow: hidden;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 540px) {
         max-width: 230px;
         width: 25%;
     }
@@ -22,7 +22,7 @@ const SideBarContainer = styled.div`
         border-top: 1px solid ${(props) => props.theme.colors.BORDER};
         border-bottom: 1px solid ${(props) => props.theme.colors.BORDER};
 
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: 540px) {
             font-size: 20px;
             padding: 10px 15px;
         }
@@ -37,13 +37,24 @@ const SideBarContainer = styled.div`
             color: #000;
             svg {
                 display: block;
-                margin: 0px 0px 0 -5px;
+                margin: -3px 0px 0 -5px;
+                @media screen and (min-width: 768px) {
+                    margin: 2px 0px 0px -6px;
+                }
             }
         }
     }
 
-    .top-section {
-        border-bottom: 1px solid ${(props) => props.theme.colors.BORDER};
+    .channel-list {
+        overflow-y: scroll;
+        height: 82vh;
+        @media screen and (min-width: 540px) {
+            height: 85vh;
+        }
+        .add-channel {
+            font-family: Codec-Pro-Bold, sans-sarif;
+            border-bottom: 1px solid ${(props) => props.theme.colors.BORDER};
+        }
     }
 `
 export default SideBarContainer

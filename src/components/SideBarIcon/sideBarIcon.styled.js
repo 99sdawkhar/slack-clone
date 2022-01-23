@@ -13,7 +13,7 @@ const IconContainer = styled.div`
     background: ${(props) => props.theme.colors.HOVER_SIDEBAR_BG};
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 540px) {
     font-size: 16px;
     padding: 7px 15px;
   }
@@ -29,7 +29,7 @@ const IconContainer = styled.div`
   h3 {
     padding-left: 20px;
   
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 540px) {
       padding-left: 5px;
     }
   }
