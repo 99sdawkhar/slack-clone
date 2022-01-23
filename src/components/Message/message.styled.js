@@ -1,7 +1,12 @@
 import styled from 'styled-components'
 
-const MessageContainer = styled.div`
+const MessageContainer = styled.li`
   display: flex;
+  padding: 7px 20px;
+
+  &:hover {
+    background: ${(props) => props.theme.colors.MESSAGE_HOVER};
+  }
 
   figure {
     max-width: 35px;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 const ChatContainer = styled.div`
   display: none;
   width: 100%;
-  padding: 20px;
+  padding: 20px 0;
   background-color: ${(props) => props.theme.colors.CHAT_BG};
   color: ${(props) => props.theme.colors.WHITE};
   
@@ -12,6 +12,7 @@ const ChatContainer = styled.div`
   }
 
   .header {
+    padding: 0 20px 10px;
     display: flex;
     justify-content: space-between;
     font-size: 20px;
@@ -34,11 +35,24 @@ const ChatContainer = styled.div`
   }
 
   .chat-body {
-    /* display: flex;
+    display: flex;
+    justify-content: flex-end;
     flex-direction: column;
-    height: 90vh; */
-    /* justify-content: flex-end;
-    align-items: flex-end; */
+    height: 85vh;
+    .chat-data {
+      overflow-y: scroll;
+      
+      /* width */
+      /* ::-webkit-scrollbar {
+        width: 7px;
+      } */
+
+      /* Handle */
+      /* ::-webkit-scrollbar-thumb {
+        background: #797c7e;
+        border-radius: 10px;
+      } */
+    }
   }
 
 `

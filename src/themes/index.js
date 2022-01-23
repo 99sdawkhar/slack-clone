@@ -9,7 +9,8 @@ const theme = {
     ICON_COLOR: '#a3a3a6',
     SEARCH_BG: '#39373c',
     CHAT_BG: '#1a1d21',
-    GOOGLE_AUTH: '#309f53'
+    GOOGLE_AUTH: '#309f53',
+    MESSAGE_HOVER: '#222529'
   },
   fonts: {
     BEBASNEUE_REGULAR: 'BebasNeue-Regular',

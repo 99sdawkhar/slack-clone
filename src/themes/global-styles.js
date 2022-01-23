@@ -82,8 +82,22 @@ const GlobalStyle = createGlobalStyle`
 		}
 	}
 
+  @media screen and (min-width: 540px) {
+    body { overflow: hidden; }
+  }
+
   .container {
     display: flex;
+  }
+  /* width */
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #797c7e;
+    border-radius: 10px;
   }
 `;
 

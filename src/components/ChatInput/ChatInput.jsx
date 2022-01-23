@@ -17,9 +17,8 @@ const ChatInput = ({ channelName, channelId}) => {
         placeholder={`Message ${channelName}`} 
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={sendMessage}
-      >
-      {input}
-      </textarea>
+        value={input}
+      ></textarea>
     </form>
   </InputComponent> 
   );

@@ -9,16 +9,16 @@ import { actionTypes } from '../../StateProvider/reducer';
 const Login = () => {
   const [{ user }, dispatch] = useStateValue(null);
 
-  const auth = getAuth();
-    signInWithPopup(auth, provider)
-      .then((result) => {;
-        dispatch({
-          type: actionTypes.SET_USER,
-          user: result.user
-        })
-      }).catch((error) => {
-        console.log(error);
-      });
+  // const auth = getAuth();
+  //   signInWithPopup(auth, provider)
+  //     .then((result) => {;
+  //       dispatch({
+  //         type: actionTypes.SET_USER,
+  //         user: result.user
+  //       })
+  //     }).catch((error) => {
+  //       console.log(error);
+  //     });
 
   return (
     <LoginContainer>

@@ -23,14 +23,16 @@ const LoginContainer = styled.div`
     color: ${(props) => props.theme.colors.HEADER_BG}
   }
   button {
-    max-width: 400px;
-    width: 20%;
     padding: 10px;
     cursor: pointer;
     background-color: ${(props) => props.theme.colors.GOOGLE_AUTH};
     border: none;
     outline: none;
     border-radius: 5px;
+    @media screen and (min-width: 768px) {
+      max-width: 400px;
+      width: 20%;  
+    }
   }
 `
 
