@@ -17,9 +17,15 @@ const Login = () => {
     const auth = getAuth();
     signInWithPopup(auth, provider)
       .then((result) => {
+        const userInfo = { 
+          displayName: result.user.displayName, 
+          email: result.user.email, 
+          photoURL: result.user.photoURL 
+        };
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
         dispatch({
           type: actionTypes.SET_USER,
-          user: result.user
+          user: userInfo
         })
       }).catch((error) => {
         console.log(error);

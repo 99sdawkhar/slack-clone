@@ -13,6 +13,9 @@ const InputComponent = styled.div`
       border-radius: 5px;
       outline: none;
       resize: none;
+      @media screen and (max-width: 540px) {
+        width: 88%;
+      }
     }
     button {
       display: none;

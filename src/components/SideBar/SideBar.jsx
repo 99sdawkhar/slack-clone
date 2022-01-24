@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { faEdit, faComment, faInbox, faEnvelopeOpenText, faSave, faGripVertical, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import { collection, getDocs, addDoc, query, onSnapshot } from 'firebase/firestore';
+import { faComment, faInbox, faEnvelopeOpenText, faSave, faGripVertical, faPlusSquare, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { collection, addDoc, query, onSnapshot } from 'firebase/firestore';
 
 import db from '../../firebase.js';
 
@@ -27,17 +27,24 @@ const SideBar = ({ setOpenChat, openChat }) => {
     onSnapshot(msgColl, (data) => {
       setChannels(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
     });
-  },[])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <SideBarContainer>
       <div className="user-info">
-        <h2>{user?.displayName.split(' ').slice(0, -1).join(' ')}</h2>
+        <h2>{user?.displayName?.split(' ')?.slice(0, -1)?.join(' ')}</h2>
         <SideBarIcon 
-          icon={faEdit}
-          hoverText="User Edit"
+          icon={faSignOutAlt}
+          hoverText="Sign Out"
           className="user-edit"
-          onClick={() => alert('User Edit')}
+          onClick={() => {
+            let isExecuted = window.confirm("Are you sure you want to sign out?");
+            if (isExecuted) {
+              localStorage.removeItem("userInfo");
+              window.location.reload();
+            }
+          }}
         />
       </div>
       <div className="channel-list">

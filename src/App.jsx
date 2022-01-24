@@ -11,12 +11,23 @@ import Login from "./components/Login/Login";
 import { useStateValue } from "./StateProvider/StateProvider";
 import { useEffect, useState } from "react";
 import useWindowDimensions from "./hooks/useWindowDimensions";
+import { actionTypes } from './StateProvider/reducer';
 
 function App() {
   const [{ user }, dispatch] = useStateValue(null);
-
+  
   const [openChat, setOpenChat] = useState(null);
   const { width } = useWindowDimensions();
+  
+
+  useEffect(() => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    dispatch({
+      type: actionTypes.SET_USER,
+      user: userInfo
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     if (width < 541) {
