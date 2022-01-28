@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { faComment, faInbox, faEnvelopeOpenText, faSave, faGripVertical, faPlusSquare, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { collection, addDoc, query, onSnapshot } from 'firebase/firestore';
+import { ToastContainer, toast } from 'react-toastify';
 
 import db from '../../firebase.js';
 
 import { useStateValue } from '../../StateProvider/StateProvider';
+
+import ToastMessage from '../ToastMessage/ToastMessage';
 
 import SideBarIcon from '../SideBarIcon';
 import SideBarContainer from './sidebar.styled';
@@ -13,12 +16,25 @@ const SideBar = ({ setOpenChat, openChat }) => {
   const [{ user }] = useStateValue();
   const [channels, setChannels] = useState([]);
 
+  const notify = () => {
+    toast("Coming Soon !", {
+      toastId: 1234,
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+    });
+  };
+
   const roomsCollectionRef = collection(db, 'rooms');
 
   const addNewChannel = async () => {
     const channelName = prompt('Please enter channel name');
     if (channelName) {
-      await addDoc(roomsCollectionRef, {name: channelName})
+      await addDoc(roomsCollectionRef, {name: channelName});
     }
   }
 
@@ -51,27 +67,27 @@ const SideBar = ({ setOpenChat, openChat }) => {
         <SideBarIcon 
             icon={faComment}
             title="Threads"
-            onClick={() => alert('Threads')}
+            onClick={notify}
         />
         <SideBarIcon 
             icon={faInbox}
             title="All DMs"
-            onClick={() => alert('All DMs')}
+            onClick={notify}
         />
         <SideBarIcon 
             icon={faEnvelopeOpenText}
             title="Mentions &amp; reactions"
-            onClick={() => alert('Mentions & reactions')}
+            onClick={notify}
         />
         <SideBarIcon 
             icon={faSave}
             title="Saved items"
-            onClick={() => alert('Saved items')}
+            onClick={notify}
         />
         <SideBarIcon 
             icon={faGripVertical}
             title="More"
-            onClick={() => alert('More')}
+            onClick={notify}
         />
         <SideBarIcon 
             icon={faPlusSquare}
@@ -91,6 +107,7 @@ const SideBar = ({ setOpenChat, openChat }) => {
           )
         })}
       </div> 
+      <ToastMessage />
     </SideBarContainer>
   )
 }

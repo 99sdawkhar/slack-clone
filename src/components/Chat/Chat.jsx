@@ -19,9 +19,10 @@ import db from "../../firebase.js";
 
 import ChatInput from "../ChatInput/ChatInput";
 import Message from "../Message/Message";
+import Button from "../Button/Button";
 
-import ChatContainer from "./chat.styled";
 import useWindowDimensions from "../../hooks/useWindowDimensions.js";
+import ChatContainer from "./chat.styled";
 
 const Chat = ({ setOpenChat, openChat }) => {
   const { roomId } = useParams();
@@ -58,9 +59,9 @@ const Chat = ({ setOpenChat, openChat }) => {
     <ChatContainer>
       <div className="header">
         {width < 541 && openChat && (
-          <button className="back-arrow" onClick={() => setOpenChat(!openChat)}>
+          <Button className="back-arrow" onClick={() => setOpenChat(!openChat)}>
             <FontAwesomeIcon icon={faChevronLeft} title="Star" size="2x" />
-          </button>
+          </Button>
         )}
         <div className="header-left">
           <h3># {roomDetails?.name}</h3>
@@ -78,13 +79,16 @@ const Chat = ({ setOpenChat, openChat }) => {
       <div className="chat-body">
         <ul className="chat-data">
           {roomMessages?.map(
-            ({ userImage, username, message, timestamp, id }) => (
+            ({ userImage, username, message, timestamp, id, isEdited, email }) => (
               <Message
                 key={id}
                 userImage={userImage}
-                user={username}
+                username={username}
                 message={message}
                 timestamp={timestamp}
+                isEdited={isEdited}
+                email={email}
+                docId={id}
               />
             )
           )}

@@ -27,8 +27,6 @@ const LoginContainer = styled.div`
     cursor: pointer;
     background-color: ${(props) => props.theme.colors.GOOGLE_AUTH};
     color: ${(props) => props.theme.colors.WHITE};
-    border: none;
-    outline: none;
     border-radius: 5px;
     @media screen and (min-width: 768px) {
       max-width: 400px;

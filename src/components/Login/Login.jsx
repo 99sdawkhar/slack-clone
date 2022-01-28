@@ -9,6 +9,7 @@ import { actionTypes } from '../../StateProvider/reducer';
 import LoginContainer from './login.styled';
 
 import slackLogo from '../../assets/images/logo.png';
+import Button from '../Button/Button';
 
 const Login = () => {
   const [{ user }, dispatch] = useStateValue(null);
@@ -27,8 +28,8 @@ const Login = () => {
           type: actionTypes.SET_USER,
           user: userInfo
         })
-      }).catch((error) => {
-        console.log(error);
+      }).catch((err) => {
+        console.log(err);
       });
   }
 
@@ -38,7 +39,7 @@ const Login = () => {
         <img src={slackLogo} alt="Slack Clone Login Page" />
       </figure>
       <h2>Sign to use slack</h2>
-      <button onClick={signIn}>Sign In with Google</button>
+      <Button onClick={signIn}>Sign In with Google</Button>
     </LoginContainer>
   );
 };

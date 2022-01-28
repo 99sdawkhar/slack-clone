@@ -17,8 +17,30 @@ const InputComponent = styled.div`
         width: 88%;
       }
     }
-    button {
-      display: none;
+    .message-box {
+      display: flex;
+      justify-content: flex-end;
+      button {
+        padding: 5px 10px;
+        color : ${(props) => props.theme.colors.WHITE};
+        border-radius: 5px;
+        font-weight: 600;
+      }
+      .cancel {
+        border: 1px solid ${(props) => props.theme.colors.BORDER};
+        background: ${(props) => props.theme.colors.SIDEBAR_BG};
+        margin-right: 5px;
+        &:hover {
+          background: ${(props) => props.theme.colors.HOVER_SIDEBAR_BG};
+        }
+      }
+      .save {
+        background: ${(props) => props.theme.colors.SAVE_BTN_GREEN};
+        margin-right: 5px;
+        &:hover {
+          background: ${(props) => props.theme.colors.SAVE_BTN_GREEN_HOVER};
+        }
+      }
     }
   }
 `;
