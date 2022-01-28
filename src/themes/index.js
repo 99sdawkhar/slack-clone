@@ -10,7 +10,10 @@ const theme = {
     SEARCH_BG: '#39373c',
     CHAT_BG: '#1a1d21',
     GOOGLE_AUTH: '#309f53',
-    MESSAGE_HOVER: '#222529'
+    MESSAGE_HOVER: '#222529',
+    OPTIONS_HOVER_BLUE: '#3f84fe',
+    SAVE_BTN_GREEN: '#1a7a5a',
+    SAVE_BTN_GREEN_HOVER: '#1a7a6b',
   },
 };
 
