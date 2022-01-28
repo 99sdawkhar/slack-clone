@@ -16,6 +16,8 @@ const SideBar = ({ setOpenChat, openChat }) => {
   const [{ user }] = useStateValue();
   const [channels, setChannels] = useState([]);
 
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
   const notify = () => {
     toast("Coming Soon !", {
       toastId: 1234,
@@ -34,7 +36,7 @@ const SideBar = ({ setOpenChat, openChat }) => {
   const addNewChannel = async () => {
     const channelName = prompt('Please enter channel name');
     if (channelName) {
-      await addDoc(roomsCollectionRef, {name: channelName});
+      await addDoc(roomsCollectionRef, {name: channelName, createdBy: userInfo.email});
     }
   }
 
