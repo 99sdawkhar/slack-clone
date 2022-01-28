@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 const ChatContainer = styled.div`
   width: 100%;
-  height: 100vh;
-  padding-bottom: 20px;
+  height: 94vh;
   background-color: ${(props) => props.theme.colors.CHAT_BG};
   border-left: 1px solid ${(props) => props.theme.colors.BORDER};
   color: ${(props) => props.theme.colors.WHITE};
