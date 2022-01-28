@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 const InputComponent = styled.div`
-  border-top: 1px solid ${(props) => props.theme.colors.WHITE};
-  
   form {
     textarea {
       width: 96%;
